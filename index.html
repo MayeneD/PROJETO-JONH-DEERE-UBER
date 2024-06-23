@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Usuário:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Entrar</button>
+        </form>
+        <p>Não tem cadastro? <a href="cadastro.html">Cadastre-se aqui</a></p>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            var users = [
+                { username: 'admin', password: 'senha' },
+                { username: 'usuario', password: '12345' }
+            ];
+
+            var authenticatedUser = users.find(function(user) {
+                return user.username === username && user.password === password;
+            });
+
+            if (authenticatedUser) {
+                window.location.href = 'sistema.html';
+            } else {
+                alert('Credenciais inválidas. Tente novamente.');
+            }
+        });
+    </script>
+</body>
+</html>
+
